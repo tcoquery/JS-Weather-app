@@ -14,7 +14,7 @@ function fetchData(data) {
      return response.json();
   })
   .then(function(response) {
-    cityInformation()
+    cityInformation(response.cod)
     getBackground(response.weather[0].main);
     const temp = document.getElementById("temperature");
     temp.textContent = (response.main.temp - 273.15).toFixed(1) + " C°";
@@ -39,17 +39,21 @@ function fetchData(data) {
   });
 }
 
-function cityInformation() {
+function cityInformation(data) {
   const card = document.getElementById("card");
+  const city = document.getElementById("city");
+  const d = document.getElementById("date");
+  const t = document.getElementById("time");
   if (value != "") {
     card.style.display = "block";
   }
-  const city = document.getElementById("city");
-  city.textContent = `${value}`;
-  const d = document.getElementById("date");
-  d.textContent = `${n}`;
-  const t = document.getElementById("time");
-  t.textContent = `${time}`;
+  if (data == "404") {
+    city.textContent = "Could not find this city";
+  } else {
+    city.textContent = `${value}`;
+    d.textContent = `${n}`;
+    t.textContent = `${time}`;
+  }
 }
 
 function getBackground(data) {
