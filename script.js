@@ -40,6 +40,10 @@ function fetchData(data) {
 }
 
 function cityInformation() {
+  const card = document.getElementById("card");
+  if (value != "") {
+    card.style.display = "block";
+  }
   const city = document.getElementById("city");
   city.textContent = `${value}`;
   const d = document.getElementById("date");

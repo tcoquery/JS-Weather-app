@@ -787,6 +787,7 @@ body {
 }
 
 #card {
+  display: none;
   background-position: 0px 0px;
   background-repeat: repeat-x;
   -webkit-animation: animatedBackground 40s linear infinite alternate;
