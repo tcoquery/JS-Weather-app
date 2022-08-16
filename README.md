@@ -9,9 +9,15 @@ More info : https://www.theodinproject.com/lessons/javascript-weather-app
 Photo credits : 
 
 Background : https://unsplash.com/@paititi
+
 Clouds : https://unsplash.com/@peymanfarmani
+
 Drizzle : https://unsplash.com/@thommilkovic
+
 Rain : https://unsplash.com/@maxwbender
+
 Snow : https://unsplash.com/@chanphoto
+
 Thunderstorm : https://unsplash.com/@cooper_baumgartner
+
 Sunny : https://unsplash.com/@groovelanddesigns
