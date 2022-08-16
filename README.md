@@ -2,7 +2,7 @@
 
 This is simple weather app that uses OpenWeatherMap API to display a city's weather. The background of the city card changes depending on the weater.
 
-Test it here : https://tcoquery.github.io/weather-app/
+Test it here : https://tcoquery.github.io/JS-Weather-app/
 
 More info : https://www.theodinproject.com/lessons/javascript-weather-app
 
