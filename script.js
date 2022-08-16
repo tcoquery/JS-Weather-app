@@ -15,8 +15,11 @@ function fetchData(data) {
   })
   .then(function(response) {
     cityInformation()
+    getBackground(response.weather[0].main);
     const temp = document.getElementById("temperature");
     temp.textContent = (response.main.temp - 273.15).toFixed(1) + " C°";
+    const desc = document.getElementById("description");
+    desc.textContent = capitalizeFirstLetter(response.weather[0].description);
     const wind = document.getElementById("wind-speed");
     const windIcon = document.createElement("i");
     const windSpeed = document.createElement("span");
@@ -33,7 +36,6 @@ function fetchData(data) {
     sunrise.textContent = "Sunrise: " + getSunTime(response.sys.sunrise);
     const sunset = document.getElementById("sunset");
     sunset.textContent = "Sunset: " + getSunTime(response.sys.sunset);
-
   });
 }
 
@@ -46,10 +48,40 @@ function cityInformation() {
   t.textContent = `${time}`;
 }
 
+function getBackground(data) {
+  const card = document.getElementById("card");
+  switch (data) {
+    case "Clouds":
+      card.style.backgroundImage = "url('./img/clouds.jpg')";
+      break;
+    case "Thunderstorm":
+      card.style.backgroundImage = "url('./img/thunderstorm.jpg')";
+      card.style.color = "white";
+      break;
+    case "Drizzle":
+      card.style.backgroundImage = "url('./img/drizzle.jpg')";
+      break;
+    case "Rain":
+      card.style.backgroundImage = "url('./img/rain.jpg')";
+      break
+    case "Snow":
+      card.style.backgroundImage = "url('./img/snow.jpg')";
+      break;
+    case "Clear":
+      card.style.backgroundImage = "url('./img/sunny.jpg')";
+      break;
+    default:
+      return;
+  }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function getSunTime(data) {
   const sunrise = new Date(data * 1000);
   const hours = sunrise.getHours();
-// Minutes part from the timestamp
   const minutes = "0" + sunrise.getMinutes();
   const formattedTime = hours + ':' + minutes.substr(-2);
   return formattedTime;

@@ -3,6 +3,22 @@
 @tailwind utilities;
 
 body {
-    background-image: url("background.jpg");
+    background-image: url("./img/background.jpg");
     height : 100vh;
 }
+
+@keyframes animatedBackground {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 100% 0;
+    }
+  }
+
+#card {
+    background-image: url("./img/sunny.jpg");
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 40s linear infinite alternate;
+  }
