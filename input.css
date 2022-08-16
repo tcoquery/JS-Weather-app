@@ -17,7 +17,6 @@ body {
   }
 
 #card {
-    background-image: url("./img/sunny.jpg");
     background-position: 0px 0px;
     background-repeat: repeat-x;
     animation: animatedBackground 40s linear infinite alternate;

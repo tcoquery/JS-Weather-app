@@ -585,18 +585,6 @@ video {
   }
 }
 
-.fixed {
-  position: fixed;
-}
-
-.bottom-0 {
-  bottom: 0px;
-}
-
-.right-0 {
-  right: 0px;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -799,7 +787,6 @@ body {
 }
 
 #card {
-  background-image: url("./img/sunny.jpg");
   background-position: 0px 0px;
   background-repeat: repeat-x;
   -webkit-animation: animatedBackground 40s linear infinite alternate;
