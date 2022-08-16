@@ -95,6 +95,9 @@ function getSunTime(data) {
   return formattedTime;
 }
 
-fetchData(`https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=c1cf9e616011473ffae77b02ee775686`);
+if (value != null) {
+  fetchData(`https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=c1cf9e616011473ffae77b02ee775686`);
+}
+
 
 
