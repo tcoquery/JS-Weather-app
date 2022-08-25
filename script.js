@@ -1,12 +1,19 @@
 const date = new Date();
 const n = date.toDateString();
 const time = date.toLocaleTimeString();
+const temp = document.getElementById("temperature");
+const desc = document.getElementById("description");
+const wind = document.getElementById("wind-speed");
+const humidity = document.getElementById("humidity");
+const sunrise = document.getElementById("sunrise");
+const sunset = document.getElementById("sunset");
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 
 let value = params.query; 
+console.log(value)
 
 function fetchData(data) {
   fetch(data)
@@ -16,26 +23,20 @@ function fetchData(data) {
   .then(function(response) {
     cityInformation(response.cod)
     getBackground(response.weather[0].main);
-    const temp = document.getElementById("temperature");
     temp.textContent = (response.main.temp - 273.15).toFixed(1) + " C°";
-    const desc = document.getElementById("description");
     desc.textContent = capitalizeFirstLetter(response.weather[0].description);
-    const wind = document.getElementById("wind-speed");
     const windIcon = document.createElement("i");
     const windSpeed = document.createElement("span");
     windIcon.className = "fa-solid fa-wind";
     windSpeed.textContent = " " + response.wind.speed + "m/s";
     wind.append(windIcon, windSpeed);
-    const humidity = document.getElementById("humidity");
     const humidIcon = document.createElement("i");
     const humidPercentage = document.createElement("span");
     humidIcon.className = "fa-solid fa-droplet";
     humidPercentage.textContent =  " " + response.main.humidity + "%";
     humidity.append(humidIcon, humidPercentage);
-    const sunrise = document.getElementById("sunrise");
-    sunrise.textContent = "Sunrise: " + getSunTime(response.sys.sunrise);
-    const sunset = document.getElementById("sunset");
-    sunset.textContent = "Sunset: " + getSunTime(response.sys.sunset);
+    sunrise.textContent = "Sunrise: " + getSunTime(response.sys.sunrise, response.timezone);
+    sunset.textContent = "Sunset: " + getSunTime(response.sys.sunset, response.timezone);
   });
 }
 
@@ -87,10 +88,10 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function getSunTime(data) {
-  const sunrise = new Date(data * 1000);
-  const hours = sunrise.getHours();
-  const minutes = "0" + sunrise.getMinutes();
+function getSunTime(time, timezone) {
+  const sunrise = new Date((time + timezone) * 1000);
+  const hours = sunrise.getUTCHours();
+  const minutes = "0" + sunrise.getUTCMinutes();
   const formattedTime = hours + ':' + minutes.substr(-2);
   return formattedTime;
 }
